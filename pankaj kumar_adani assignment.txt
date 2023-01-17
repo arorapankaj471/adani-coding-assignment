@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int** create2DArray(int numberOfRows, int numberOfColumns) {
+    int** array2D = new int*[numberOfRows];
+    for (int i = 0; i < numberOfRows; i++) {
+        array2D[i] = new int[numberOfColumns];
+        for (int j = 0; j < numberOfColumns; j++) {
+            array2D[i][j] = rand() % 101;
+        }
+    }
+    return array2D;
+}
+int** sort2DArray(int** array2D, int numberOfRows, int numberOfColumns, int columnIndex) {
+    for (int i = 0; i < numberOfRows; i++) {
+        sort(array2D[i], array2D[i] + numberOfColumns, [columnIndex](const int* a, const int* b) {
+            return a[columnIndex] < b[columnIndex];
+        });
+    }
+    return array2D;
+}
+int main(){
+    int n_rows,c_cols;
+    cin>>n_rows>>c_cols;
+    int arr[n_rows][c_cols]={{0}};
+    create2DArray(n_rows,c_cols);
+    int c_index;
+    cin>>c_index;
+    sort2DArray(arr,n_rows,c_cols,c_index);
+}
